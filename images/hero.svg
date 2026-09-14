@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2c3e50"/>
+      <stop offset="100%" stop-color="#8e44ad"/>
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3498db"/>
+      <stop offset="100%" stop-color="#2c3e50"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#gradient1)"/>
+  <circle cx="600" cy="300" r="200" fill="url(#gradient2)" opacity="0.3"/>
+  <rect x="300" y="150" width="600" height="300" rx="20" fill="white" opacity="0.1"/>
+  <text x="600" y="250" font-family="Arial, sans-serif" font-size="48" fill="white" text-anchor="middle" font-weight="bold">PREMIUM FASHION</text>
+  <text x="600" y="300" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle">LUXURY STREETWEAR</text>
+  <rect x="500" y="350" width="200" height="50" rx="25" fill="white" opacity="0.8"/>
+  <text x="600" y="385" font-family="Arial, sans-serif" font-size="18" fill="#2c3e50" text-anchor="middle" font-weight="bold">SHOP NOW</text>
+</svg>
