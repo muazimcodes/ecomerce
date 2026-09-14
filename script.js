@@ -1,77 +1,104 @@
 // DOM Elements
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
-const wishlistIcons = document.querySelectorAll('.wishlist-icon');
 const cartIcon = document.querySelector('.cart-icon');
-const newsletterForm = document.getElementById('newsletter-form');
+const wishlistIcon = document.querySelector('.wishlist-icon');
 const productsContainer = document.getElementById('products-container');
 const bestSellersContainer = document.getElementById('best-sellers-container');
+const newsletterForm = document.getElementById('newsletter-form');
+const notification = document.createElement('div');
 
-// Mobile Menu Toggle
-menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
-
-// Close mobile menu when clicking a link
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-    });
-});
-
-// Wishlist functionality
-wishlistIcons.forEach(icon => {
-    icon.addEventListener('click', function(e) {
-        e.preventDefault();
-        this.classList.toggle('active');
-        
-        // Update wishlist count
-        const count = parseInt(this.getAttribute('data-count') || 0);
-        this.setAttribute('data-count', count === 0 ? 1 : 0);
-        
-        // Visual feedback
-        this.style.color = this.classList.contains('active') ? '#e74c3c' : '#000';
-    });
-});
-
-// Cart functionality
+// State
 let cartCount = 0;
-cartIcon.addEventListener('click', function(e) {
-    e.preventDefault();
-    cartCount++;
-    this.setAttribute('data-count', cartCount);
-    
-    // Visual feedback
-    this.style.color = '#e74c3c';
-    
-    // Reset color after animation
-    setTimeout(() => {
-        this.style.color = '#000';
-    }, 500);
-});
+let wishlistCount = 0;
+let wishlistItems = [];
 
-// Add to Cart functionality
-function addToCart(productId) {
-    cartCount++;
-    cartIcon.setAttribute('data-count', cartCount);
-    
-    // Visual feedback
-    cartIcon.style.color = '#e74c3c';
-    
-    // Reset color after animation
-    setTimeout(() => {
-        cartIcon.style.color = '#000';
-    }, 500);
-    
-    // Show notification
-    showNotification(`Added to cart: Product ${productId}`);
-}
+// Sample product data
+const products = [
+    {
+        id: 1,
+        name: "Premium Hoodie",
+        category: "Men",
+        price: 89.99,
+        image: "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 2,
+        name: "Designer Jeans",
+        category: "Women",
+        price: 129.99,
+        image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 3,
+        name: "Street Sneakers",
+        category: "Unisex",
+        price: 149.99,
+        image: "https://images.unsplash.com/photo-1591047139853-5870f3d5d1a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 4,
+        name: "Leather Jacket",
+        category: "Men",
+        price: 299.99,
+        image: "https://images.unsplash.com/photo-1525507119028-75740b2b0f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 5,
+        name: "Designer T-Shirt",
+        category: "Women",
+        price: 49.99,
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 6,
+        name: "Accessories Set",
+        category: "Accessories",
+        price: 79.99,
+        image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    }
+];
 
-// Show notification
-function showNotification(message) {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.textContent = message;
+const bestSellers = [
+    {
+        id: 7,
+        name: "Classic Sweater",
+        category: "Women",
+        price: 99.99,
+        image: "https://images.unsplash.com/photo-1591047139853-5870f3d5d1a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 8,
+        name: "Casual Shorts",
+        category: "Men",
+        price: 59.99,
+        image: "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 9,
+        name: "Designer Hat",
+        category: "Accessories",
+        price: 39.99,
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 10,
+        name: "Premium Pants",
+        category: "Unisex",
+        price: 119.99,
+        image: "https://images.unsplash.com/photo-1525507119028-75740b2b0f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    }
+];
+
+// Initialize the website
+document.addEventListener('DOMContentLoaded', function() {
+    renderProducts(productsContainer, products);
+    renderProducts(bestSellersContainer, bestSellers);
+    
+    // Set up event listeners
+    setupEventListeners();
+    
+    // Add notification styles
     notification.style.position = 'fixed';
     notification.style.bottom = '20px';
     notification.style.right = '20px';
@@ -82,141 +109,69 @@ function showNotification(message) {
     notification.style.zIndex = '1000';
     notification.style.opacity = '0';
     notification.style.transition = 'opacity 0.3s ease';
-    
     document.body.appendChild(notification);
-    
-    // Fade in
-    setTimeout(() => {
-        notification.style.opacity = '1';
-    }, 10);
-    
-    // Remove after 3 seconds
-    setTimeout(() => {
-        notification.style.opacity = '0';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
-}
-
-// Newsletter form validation
-newsletterForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const emailInput = this.querySelector('input[type="email"]');
-    const email = emailInput.value.trim();
-    
-    // Simple email validation
-    if (!email || !isValidEmail(email)) {
-        alert('Please enter a valid email address');
-        return;
-    }
-    
-    // Show success message
-    showNotification('Thank you for subscribing!');
-    
-    // Reset form
-    this.reset();
 });
 
-// Email validation function
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+// Set up event listeners
+function setupEventListeners() {
+    // Mobile menu toggle
+    menuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        menuToggle.querySelector('i').classList.toggle('fa-bars');
+        menuToggle.querySelector('i').classList.toggle('fa-times');
+    });
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            menuToggle.querySelector('i').classList.add('fa-bars');
+            menuToggle.querySelector('i').classList.remove('fa-times');
+        });
+    });
+    
+    // Cart functionality
+    cartIcon.addEventListener('click', function(e) {
+        e.preventDefault();
+        showNotification('Item added to cart!');
+    });
+    
+    // Wishlist functionality
+    wishlistIcon.addEventListener('click', function(e) {
+        e.preventDefault();
+        wishlistCount++;
+        wishlistIcon.setAttribute('data-count', wishlistCount);
+        showNotification('Item added to wishlist!');
+    });
+    
+    // Newsletter form
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input').value;
+        if (isValidEmail(email)) {
+            showNotification('Thank you for subscribing!');
+            this.reset();
+        } else {
+            showNotification('Please enter a valid email address.');
+        }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 }
 
-// Product data
-const products = [
-    {
-        id: 1,
-        name: "Premium Hoodie",
-        category: "Men",
-        price: "$129.99",
-        image: "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 2,
-        name: "Designer Jacket",
-        category: "Women",
-        price: "$249.99",
-        image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 3,
-        name: "Street Sneakers",
-        category: "Accessories",
-        price: "$159.99",
-        image: "https://images.unsplash.com/photo-1591047139853-5870f3d5d1a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 4,
-        name: "Luxury T-Shirt",
-        category: "Men",
-        price: "$79.99",
-        image: "https://images.unsplash.com/photo-1525507119028-75740b2b0f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 5,
-        name: "Designer Jeans",
-        category: "Women",
-        price: "$139.99",
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 6,
-        name: "Premium Cap",
-        category: "Accessories",
-        price: "$49.99",
-        image: "https://images.unsplash.com/photo-1591047139853-5870f3d5d1a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 7,
-        name: "Designer Sweater",
-        category: "Women",
-        price: "$179.99",
-        image: "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 8,
-        name: "Street Shorts",
-        category: "Men",
-        price: "$89.99",
-        image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    }
-];
-
-// Best sellers data
-const bestSellers = [
-    {
-        id: 9,
-        name: "Classic Leather Jacket",
-        category: "Men",
-        price: "$299.99",
-        image: "https://images.unsplash.com/photo-1525507119028-75740b2b0f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 10,
-        name: "Designer Blouse",
-        category: "Women",
-        price: "$149.99",
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 11,
-        name: "Premium Backpack",
-        category: "Accessories",
-        price: "$129.99",
-        image: "https://images.unsplash.com/photo-1591047139853-5870f3d5d1a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 12,
-        name: "Luxury Polo Shirt",
-        category: "Men",
-        price: "$99.99",
-        image: "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    }
-];
-
-// Render products
+// Render products to the DOM
 function renderProducts(container, productArray) {
     container.innerHTML = '';
     
@@ -230,7 +185,7 @@ function renderProducts(container, productArray) {
             <div class="product-info">
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-category">${product.category}</p>
-                <p class="product-price">${product.price}</p>
+                <p class="product-price">$${product.price.toFixed(2)}</p>
                 <div class="product-actions">
                     <button class="wishlist-btn" data-id="${product.id}">
                         <i class="fas fa-heart"></i>
@@ -244,63 +199,67 @@ function renderProducts(container, productArray) {
         container.appendChild(productCard);
     });
     
-    // Add event listeners to wishlist buttons
+    // Add event listeners to new buttons
     document.querySelectorAll('.wishlist-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const productId = this.getAttribute('data-id');
-            const icon = this.querySelector('i');
-            icon.classList.toggle('fas');
-            icon.classList.toggle('far');
-            
-            // Visual feedback
-            this.style.color = icon.classList.contains('fas') ? '#e74c3c' : '#000';
+        button.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            toggleWishlist(productId);
         });
     });
     
-    // Add event listeners to add to cart buttons
     document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const productId = this.getAttribute('data-id');
+        button.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
             addToCart(productId);
         });
     });
 }
 
-// Initialize the page
-document.addEventListener('DOMContentLoaded', function() {
-    // Render products
-    renderProducts(productsContainer, products);
-    renderProducts(bestSellersContainer, bestSellers);
+// Add to cart function
+function addToCart(productId) {
+    cartCount++;
+    cartIcon.setAttribute('data-count', cartCount);
     
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+    // Visual feedback
+    cartIcon.style.color = '#e74c3c';
     
-    // Header scroll effect
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('.header');
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        } else {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
-        }
-    });
-});
+    // Reset color after animation
+    setTimeout(() => {
+        cartIcon.style.color = '#000';
+    }, 500);
+    
+    showNotification('Item added to cart!');
+}
+
+// Toggle wishlist function
+function toggleWishlist(productId) {
+    const index = wishlistItems.indexOf(productId);
+    
+    if (index === -1) {
+        wishlistItems.push(productId);
+        wishlistCount++;
+        wishlistIcon.setAttribute('data-count', wishlistCount);
+        showNotification('Item added to wishlist!');
+    } else {
+        wishlistItems.splice(index, 1);
+        wishlistCount--;
+        wishlistIcon.setAttribute('data-count', wishlistCount);
+        showNotification('Item removed from wishlist!');
+    }
+}
+
+// Show notification function
+function showNotification(message) {
+    notification.textContent = message;
+    notification.style.opacity = '1';
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+    }, 3000);
+}
+
+// Email validation function
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
