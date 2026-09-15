@@ -1,4 +1,4 @@
-// DOM Elements
+﻿// DOM Elements
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
 const cartIcon = document.querySelector('.cart-icon');
@@ -20,28 +20,28 @@ const products = [
         name: "Premium Hoodie",
         category: "Men",
         price: 89.99,
-        image: "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+        image: "images/hoodie.jpg"
     },
     {
         id: 2,
         name: "Designer Jeans",
         category: "Women",
         price: 129.99,
-        image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+        image: "images/jeans.jpg"
     },
     {
         id: 3,
         name: "Street Sneakers",
         category: "Unisex",
         price: 149.99,
-        image: "https://images.unsplash.com/photo-1591047139853-5870f3d5d1a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+        image: "images/sneakers.jpg"
     },
     {
         id: 4,
         name: "Leather Jacket",
         category: "Men",
         price: 299.99,
-        image: "https://images.unsplash.com/photo-1525507119028-75740b2b0f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+        image: "images/jacket.jpg"
     },
     {
         id: 5,
@@ -65,28 +65,28 @@ const bestSellers = [
         name: "Classic Sweater",
         category: "Women",
         price: 99.99,
-        image: "https://images.unsplash.com/photo-1591047139853-5870f3d5d1a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+        image: "images/sweater.jpg"
     },
     {
         id: 8,
         name: "Casual Shorts",
         category: "Men",
         price: 59.99,
-        image: "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+        image: "images/shorts.jpg"
     },
     {
         id: 9,
         name: "Designer Hat",
         category: "Accessories",
         price: 39.99,
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+        image: "images/cap.jpg"
     },
     {
         id: 10,
         name: "Premium Pants",
         category: "Unisex",
         price: 119.99,
-        image: "https://images.unsplash.com/photo-1525507119028-75740b2b0f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+        image: "images/jeans.jpg"
     }
 ];
 
@@ -263,3 +263,6 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+
+
+
