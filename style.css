@@ -1,4 +1,4 @@
-﻿/* Base Styles */
+/* Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -625,6 +625,43 @@ p {
     font-size: 0.9rem;
 }
 
+/* Top Seller Brand Section */
+.top-seller-brand {
+    padding: 80px 0;
+    background: #f8f8f8;
+}
+
+.brand-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.brand-image {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.brand-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.brand-image:hover img {
+    transform: scale(1.05);
+}
+
+.brand-info {
+    flex: 1;
+    min-width: 300px;
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
     h1 {
@@ -641,6 +678,11 @@ p {
     
     .collection-title {
         font-size: 2.5rem;
+    }
+    
+    .brand-content {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -728,4 +770,3 @@ p {
         max-width: 300px;
     }
 }
-
