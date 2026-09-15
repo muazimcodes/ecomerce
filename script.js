@@ -48,14 +48,14 @@ const products = [
         name: "Designer T-Shirt",
         category: "Women",
         price: 49.99,
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+        image: "images/tshirt.jpg"
     },
     {
         id: 6,
         name: "Accessories Set",
         category: "Accessories",
         price: 79.99,
-        image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+        image: "images/accessories.jpg"
     }
 ];
 
@@ -263,6 +263,3 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
-
-
-
