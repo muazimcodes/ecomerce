@@ -7,18 +7,18 @@ if (!(Test-Path $imagesFolder)) {
 
 # Define image URLs and local paths
 $images = @(
-    @{Url = "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"; LocalPath = "$imagesFolder\hero.jpg"},
-    @{Url = "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"; LocalPath = "$imagesFolder\hoodie.jpg"},
-    @{Url = "https://images.unsplash.com/photo-1543002588-bfa74002ed7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"; LocalPath = "$imagesFolder\jacket.jpg"},
-    @{Url = "https://images.unsplash.com/photo-1591047139853-5870f3d5d1a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"; LocalPath = "$imagesFolder\sneakers.jpg"},
-    @{Url = "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"; LocalPath = "$imagesFolder\tshirt.jpg"},
-    @{Url = "https://images.unsplash.com/photo-1525507119028-75740b2b0f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"; LocalPath = "$imagesFolder\jeans.jpg"},
-    @{Url = "https://images.unsplash.com/photo-1525507119028-75740b2b0f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"; LocalPath = "$imagesFolder\cap.jpg"},
-    @{Url = "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"; LocalPath = "$imagesFolder\sweater.jpg"},
-    @{Url = "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"; LocalPath = "$imagesFolder\shorts.jpg"},
-    @{Url = "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"; LocalPath = "$imagesFolder\men.jpg"},
-    @{Url = "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"; LocalPath = "$imagesFolder\women.jpg"},
-    @{Url = "https://images.unsplash.com/photo-1521572163474-6c03d3937509?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"; LocalPath = "$imagesFolder\accessories.jpg"}
+    @{Url = "https://loremflickr.com/1600/900/fashion,model?lock=101"; LocalPath = "$imagesFolder\hero.jpg"},
+    @{Url = "https://loremflickr.com/900/1200/hoodie,fashion?lock=102"; LocalPath = "$imagesFolder\hoodie.jpg"},
+    @{Url = "https://loremflickr.com/900/1200/jacket,fashion?lock=103"; LocalPath = "$imagesFolder\jacket.jpg"},
+    @{Url = "https://loremflickr.com/900/1200/sneakers,fashion?lock=104"; LocalPath = "$imagesFolder\sneakers.jpg"},
+    @{Url = "https://loremflickr.com/900/1200/tshirt,fashion?lock=105"; LocalPath = "$imagesFolder\tshirt.jpg"},
+    @{Url = "https://loremflickr.com/900/1200/jeans,fashion?lock=106"; LocalPath = "$imagesFolder\jeans.jpg"},
+    @{Url = "https://loremflickr.com/900/1200/cap,fashion?lock=107"; LocalPath = "$imagesFolder\cap.jpg"},
+    @{Url = "https://loremflickr.com/900/1200/sweater,fashion?lock=108"; LocalPath = "$imagesFolder\sweater.jpg"},
+    @{Url = "https://loremflickr.com/900/1200/shorts,fashion?lock=109"; LocalPath = "$imagesFolder\shorts.jpg"},
+    @{Url = "https://loremflickr.com/900/1200/mens,fashion?lock=110"; LocalPath = "$imagesFolder\men.jpg"},
+    @{Url = "https://loremflickr.com/900/1200/womens,fashion?lock=111"; LocalPath = "$imagesFolder\women.jpg"},
+    @{Url = "https://loremflickr.com/900/1200/fashion,accessories?lock=112"; LocalPath = "$imagesFolder\accessories.jpg"}
 )
 
 # Download images
