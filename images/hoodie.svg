@@ -1,9 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
   <rect width="400" height="400" fill="#f8f9fa"/>
-  <rect x="100" y="100" width="200" height="200" rx="10" fill="#3498db" opacity="0.8"/>
-  <rect x="120" y="120" width="160" height="160" rx="5" fill="#2c3e50"/>
-  <rect x="140" y="140" width="120" height="120" rx="5" fill="#3498db" opacity="0.5"/>
-  <rect x="160" y="160" width="80" height="80" rx="5" fill="#2c3e50"/>
-  <rect x="180" y="180" width="40" height="40" rx="5" fill="#3498db" opacity="0.7"/>
+  <!-- Hoodie base -->
+  <rect x="100" y="120" width="200" height="160" rx="15" fill="#3498db" opacity="0.9"/>
+  <!-- Hoodie collar -->
+  <path d="M100 120 L100 100 Q150 80 200 100 Q250 80 300 100 L300 120 Z" fill="#2c3e50"/>
+  <!-- Hoodie front -->
+  <rect x="120" y="140" width="160" height="100" rx="5" fill="#3498db" opacity="0.7"/>
+  <!-- Hoodie pocket -->
+  <rect x="160" y="160" width="80" height="40" rx="5" fill="#2c3e50" opacity="0.8"/>
+  <!-- Hoodie sleeves -->
+  <rect x="80" y="140" width="20" height="100" rx="10" fill="#3498db" opacity="0.7"/>
+  <rect x="300" y="140" width="20" height="100" rx="10" fill="#3498db" opacity="0.7"/>
+  <!-- Hoodie hood -->
+  <path d="M100 100 Q150 60 200 80 Q250 60 300 80 L300 100 L100 100 Z" fill="#3498db" opacity="0.5"/>
+  <!-- Text -->
   <text x="200" y="350" font-family="Arial, sans-serif" font-size="20" fill="#2c3e50" text-anchor="middle" font-weight="bold">HOODIE</text>
 </svg>
