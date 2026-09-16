@@ -20,14 +20,14 @@ const products = [
         name: "Premium Hoodie",
         category: "Men",
         price: 89.99,
-        image: "images/hoodie.jpg"
+        image: "images/premium hoodie.jpg"
     },
     {
         id: 2,
         name: "Designer Jeans",
         category: "Women",
         price: 129.99,
-        image: "images/jeans.jpg"
+        image: "images/designer-jacket.jpg"
     },
     {
         id: 3,
@@ -41,21 +41,21 @@ const products = [
         name: "Leather Jacket",
         category: "Men",
         price: 299.99,
-        image: "images/jacket.jpg"
+        image: "images/leather jacket.jpg"
     },
     {
         id: 5,
         name: "Designer T-Shirt",
         category: "Women",
         price: 49.99,
-        image: "images/tshirt.jpg"
+        image: "images/1tshirt.jpg"
     },
     {
         id: 6,
         name: "Accessories Set",
         category: "Accessories",
         price: 79.99,
-        image: "images/accessories.jpg"
+        image: "images/1accessories.jpg"
     }
 ];
 
@@ -65,28 +65,28 @@ const bestSellers = [
         name: "Classic Sweater",
         category: "Women",
         price: 99.99,
-        image: "images/sweater.jpg"
+        image: "images/classic-sweater.jpg"
     },
     {
         id: 8,
         name: "Casual Shorts",
         category: "Men",
         price: 59.99,
-        image: "images/shorts.jpg"
+        image: "images/casual-shorts.jpg"
     },
     {
         id: 9,
         name: "Designer Hat",
         category: "Accessories",
         price: 39.99,
-        image: "images/cap.jpg"
+        image: "images/designer-hat.jpg"
     },
     {
         id: 10,
         name: "Premium Pants",
         category: "Unisex",
         price: 119.99,
-        image: "images/jeans.jpg"
+        image: "images/premium-pants.jpg"
     }
 ];
 
@@ -263,3 +263,8 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+
+
+
+
+

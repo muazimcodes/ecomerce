@@ -761,3 +761,6 @@ p {
         max-width: 300px;
     }
 }
+
+/* Keep hero models fully visible */
+.hero { background-position: center top !important; }
